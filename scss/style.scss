@@ -1,0 +1,130 @@
+@import "compass/css3";
+
+@mixin breakpoint($point) {
+    @if $point == widescreen {
+        @media (min-width: 1224px) { @content; } }
+    @else if $point == desktop {
+        @media (min-width: 769px) { @content; } }
+    @else if $point == tablet {
+        @media (min-width: 481px) { @content; } }
+    @else if $point == mobile {
+        @media (max-width: 480px)  { @content; } }
+    @else if $point == mini {
+        @media (min-width: 260px)  { @content; } } }
+
+$pad-base: 12px;
+$pad-mobile: $pad-base * 1.5;
+$pad-tablet: $pad-base * 1;
+$pad-desktop: $pad-base * 1.5;
+$pad-widescreen: $pad-base * 2;
+
+@mixin pad-rwd {        
+    @include breakpoint(mobile) {
+        padding: $pad-mobile; }
+    @include breakpoint(tablet) {
+        padding: $pad-tablet; }
+    @include breakpoint(desktop) {
+        padding: $pad-desktop; }
+    @include breakpoint(widescreen) {
+        padding: $pad-widescreen; }
+}
+
+html, body{
+  margin:0px; padding:0px; height: 100%; }
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+section {
+    height: 100%;
+}
+
+header{
+  z-index: 1;
+  position:fixed; 
+  width:100%;  
+  background:rgba(0,0,0,0.1);
+}
+
+header a{
+  color:white;
+  background:rgba(0,0,0,0.1); 
+  display:inline-block; 
+  padding:0px 30px; 
+  height:60px;
+  line-height:60px; 
+  text-align:center;
+  font-family: 'Roboto Slab', serif; 
+  text-decoration:none;
+  text-transform:uppercase; 
+  letter-spacing:2px; 
+  font-weight:700;
+  @include breakpoint(mobile)     { width: 100%; }
+  @include breakpoint(tablet)     { width: 50%; }
+  @include breakpoint(desktop)    { width: 25%; }
+  @include breakpoint(widescreen) {}
+}
+
+#hero1{
+ background:url(../img/1.jpg);
+  background-size:cover;
+  background-position:center center;
+  background-attachment:fixed;
+}
+#hero2{
+  background: url(../img/2.jpg);
+  background-size:cover;
+  background-position:center center;
+  background-attachment:fixed;
+}
+.hero, .content{
+  text-align:center; 
+  position:relative;
+  width: 100%;
+}
+
+.inner{
+  height: 100%;
+  text-align: center;
+  &:before {
+      content: '';
+      display: inline-block;
+      height: 100%; 
+      vertical-align: middle;
+      margin-right: -0.25em; /* Adjusts for spacing */
+  }
+}
+
+.hero .inner{
+  background: rgba(0,0,0,0.6) url(../img/3.jpg);
+}
+
+.copy{
+  @include pad-rwd;
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 99%;
+}
+
+.hero h1, .hero p{ 
+  color:#fff;
+}
+
+.content h1, .content p{
+  color:#333;
+}
+
+h1{
+  margin:0px;
+  font-family: 'Roboto Slab', serif;
+  font-weight:400;
+  font-size:32px;
+}
+
+p{
+  font-family: 'Noto Sans', sans-serif; 
+  font-size:14px;
+}
